@@ -1,5 +1,9 @@
-# 禁用 Cloudflare Workers 部署
-# 此项目是 Next.js 应用，不适用于 Cloudflare Workers
-# 请使用 Vercel 或 Netlify 进行部署
+# Cloudflare Pages 配置
+# 此项目应该使用 Cloudflare Pages 而不是 Workers
+# 请在 Cloudflare Dashboard 中使用 Pages 服务进行部署
 
-# 如果必须使用 Cloudflare Pages，请删除此文件并使用 Pages 配置
+name = "meilv-web"
+compatibility_date = "2025-08-31"
+
+# 这个文件仅用于 Cloudflare Workers
+# 对于 Next.js 应用，请使用 Cloudflare Pages
