@@ -18,8 +18,9 @@
     "deploy:netlify": "netlify deploy --prod --dir=.next",
     "build:cloudflare": "./build.sh",
     "deploy:cloudflare": "npm run build:cloudflare && wrangler pages deploy out --project-name=meilv-web",
-    "deploy:workers": "npm run build && wrangler deploy",
-    "dev:workers": "wrangler dev"
+    "deploy:workers": "npm run build && wrangler deploy --env=\"\"",
+    "dev:workers": "wrangler dev",
+    "build:workers": "npm run build && echo 'Build completed for Workers deployment'"
   },
   "dependencies": {
     "@heroicons/react": "^2.2.0",
