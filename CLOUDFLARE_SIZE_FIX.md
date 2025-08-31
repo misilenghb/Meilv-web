@@ -30,19 +30,12 @@ Pages only supports files up to 25 MiB in size
 }
 ```
 
-### 2. **更新 wrangler.toml 配置**
+### 2. **移除 wrangler.toml 配置**
 
-```toml
-name = "meilv-web"
-compatibility_date = "2025-08-31"
-pages_build_output_dir = "out"  # 使用 out 目录
-
-[build]
-command = "npm run build"
-
-[env.production]
-NODE_VERSION = "20"
-```
+Cloudflare Pages 不需要 wrangler.toml 文件，构建配置通过 Dashboard 设置：
+- 构建命令：`npm run build:cloudflare`
+- 输出目录：`out`
+- Node.js 版本：通过环境变量 `NODE_VERSION=20` 设置
 
 ### 3. **创建 .cfignore 文件**
 

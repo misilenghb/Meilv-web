@@ -86,8 +86,8 @@ HTTP 头配置，包含安全头和缓存策略
 #### 4. `_redirects`
 路由重定向配置，支持 SPA 路由
 
-#### 5. `wrangler.toml`
-Cloudflare 项目配置文件
+#### 5. `_worker.js`
+Cloudflare Pages Functions 配置文件
 
 ### 新增的 package.json 脚本
 
