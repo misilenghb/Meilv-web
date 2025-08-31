@@ -16,7 +16,7 @@
     "create-cross-role-messages": "node scripts/create-cross-role-messages.js",
     "deploy:vercel": "vercel --prod",
     "deploy:netlify": "netlify deploy --prod --dir=.next",
-    "build:cloudflare": "npm run build && rm -rf out/cache out/**/*.map",
+    "build:cloudflare": "./build.sh",
     "deploy:cloudflare": "npm run build:cloudflare && wrangler pages deploy out --project-name=meilv-web"
   },
   "dependencies": {
