@@ -1,13 +1,20 @@
 import { NextRequest, NextResponse } from "next/server";
-import { createClient } from "@supabase/supabase-js";
-
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
-const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY!;
-
-const supabase = createClient(supabaseUrl, supabaseServiceKey);
+import { supabaseAdmin } from "@/lib/supabase";
 
 export async function POST(request: NextRequest) {
   try {
+    // 检查 Supabase 配置
+    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+    const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+
+    if (!supabaseUrl || !supabaseAnonKey ||
+        supabaseUrl === 'https://placeholder.supabase.co' ||
+        supabaseAnonKey === 'placeholder-key') {
+      return NextResponse.json({
+        error: "数据库配置错误，请检查环境变量"
+      }, { status: 500 });
+    }
+
     console.log("开始创建guide_applications表...");
 
     // 首先尝试直接插入一条测试数据来检查表是否存在
@@ -31,7 +38,7 @@ export async function POST(request: NextRequest) {
     };
 
     // 尝试插入测试数据
-    const { error: insertError } = await supabase
+    const { error: insertError } = await supabaseAdmin
       .from('guide_applications')
       .insert([testData]);
 
@@ -86,7 +93,7 @@ CREATE INDEX IF NOT EXISTS idx_guide_applications_id_number ON guide_application
     }
 
     // 如果插入成功，删除测试数据
-    await supabase
+    await supabaseAdmin
       .from('guide_applications')
       .delete()
       .eq('display_name', 'test');
