@@ -13,7 +13,9 @@
     "setup-messages": "node scripts/setup-messages-table.js",
     "insert-test-messages": "node scripts/insert-test-messages.js",
     "create-current-messages": "node scripts/create-current-user-messages.js",
-    "create-cross-role-messages": "node scripts/create-cross-role-messages.js"
+    "create-cross-role-messages": "node scripts/create-cross-role-messages.js",
+    "deploy:vercel": "vercel --prod",
+    "deploy:netlify": "netlify deploy --prod --dir=.next"
   },
   "dependencies": {
     "@heroicons/react": "^2.2.0",
