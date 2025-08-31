@@ -39,3 +39,25 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+Thumbs.db
+
+# 项目特定文件
+/database/backups/
+/uploads/
+/temp/
+*.sql.backup
+check-*.js
+test-*.js
+fix-*.js
+final-*.js
+*-verification.js
+*-audit.js
+*.md.backup
