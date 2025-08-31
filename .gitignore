@@ -17,11 +17,6 @@
 /.next/
 /out/
 
-# Cloudflare Pages 部署时排除大文件
-/.next/cache/
-/.next/server/chunks/
-/.next/static/chunks/
-
 # production
 /build
 

@@ -10,26 +10,10 @@ const nextConfig = {
   },
   images: {
     // 允许外部图片域名
-    domains: ['localhost', 'fauzguzoamyahhcqhvoc.supabase.co'],
+    domains: ['localhost'],
     // 允许未优化的图片
     unoptimized: true,
   },
-  experimental: {
-    serverComponentsExternalPackages: ['pg']
-  },
-  // Cloudflare Workers 优化配置
-  output: 'export',
-  trailingSlash: true,
-  distDir: '.next',
-  // 环境变量配置
-  env: {
-    NEXT_PUBLIC_SUPABASE_URL: process.env.NEXT_PUBLIC_SUPABASE_URL,
-    NEXT_PUBLIC_SUPABASE_ANON_KEY: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
-    SUPABASE_SERVICE_ROLE_KEY: process.env.SUPABASE_SERVICE_ROLE_KEY,
-    NEXT_PUBLIC_SUPABASE_STORAGE_URL: process.env.NEXT_PUBLIC_SUPABASE_STORAGE_URL,
-    SUPABASE_STORAGE_KEY_ID: process.env.SUPABASE_STORAGE_KEY_ID,
-    SUPABASE_STORAGE_ACCESS_KEY: process.env.SUPABASE_STORAGE_ACCESS_KEY,
-  }
 }
 
 module.exports = nextConfig

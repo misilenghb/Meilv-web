@@ -1,7 +1,0 @@
-# Cloudflare Pages Redirects 配置
-
-# API 路由重定向
-/api/* /api/:splat 200
-
-# SPA 路由支持
-/* /index.html 200

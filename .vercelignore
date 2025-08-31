@@ -1,6 +1,0 @@
-# Vercel 忽略文件
-wrangler.toml
-wrangler.jsonc
-.wrangler/
-worker.js
-*.worker.js
