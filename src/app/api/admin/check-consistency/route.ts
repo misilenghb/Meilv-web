@@ -3,6 +3,17 @@ import { supabaseAdmin } from "@/lib/supabase";
 
 export async function GET(request: NextRequest) {
   try {
+    // 检查 Supabase 配置
+    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+    const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+
+    if (!supabaseUrl || !supabaseAnonKey ||
+        supabaseUrl === 'https://placeholder.supabase.co' ||
+        supabaseAnonKey === 'placeholder-key') {
+      return NextResponse.json({
+        error: "数据库配置错误，请检查环境变量"
+      }, { status: 500 });
+    }
     // 检查管理员权限
     const sessionCookie = request.cookies.get("ml_session");
     if (!sessionCookie) {

@@ -1,8 +1,8 @@
 import { createClient } from "@supabase/supabase-js";
 
-// Supabase 配置
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
+// Supabase 配置 - 使用默认值避免构建时错误
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://placeholder.supabase.co';
+const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || 'placeholder-key';
 const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
 
 // 客户端 Supabase 实例（用于前端）
@@ -10,19 +10,23 @@ export const supabaseClient = createClient(supabaseUrl, supabaseAnonKey);
 
 // 服务端 Supabase 实例（用于API路由，具有更高权限）
 export const supabaseAdmin = createClient(
-  supabaseUrl, 
+  supabaseUrl,
   supabaseServiceKey || supabaseAnonKey
 );
 
 // 检查环境变量是否正确配置
 export function checkSupabaseConfig() {
-  if (!supabaseUrl) {
+  const realUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const realAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+  const realServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+
+  if (!realUrl || realUrl === 'https://placeholder.supabase.co') {
     throw new Error("Missing NEXT_PUBLIC_SUPABASE_URL environment variable");
   }
-  if (!supabaseAnonKey) {
+  if (!realAnonKey || realAnonKey === 'placeholder-key') {
     throw new Error("Missing NEXT_PUBLIC_SUPABASE_ANON_KEY environment variable");
   }
-  if (!supabaseServiceKey) {
+  if (!realServiceKey) {
     console.warn("Missing SUPABASE_SERVICE_ROLE_KEY environment variable. Using anon key for server operations.");
   }
   return true;
@@ -272,9 +276,12 @@ export class SupabaseHelper {
   }
 }
 
-// 初始化检查
-try {
-  checkSupabaseConfig();
-} catch (error) {
-  console.error("Supabase configuration error:", error);
+// 运行时检查（仅在运行时，不在构建时）
+if (typeof window !== 'undefined') {
+  // 客户端检查
+  try {
+    checkSupabaseConfig();
+  } catch (error) {
+    console.error("Supabase configuration error:", error);
+  }
 }
