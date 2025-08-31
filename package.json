@@ -16,8 +16,8 @@
     "create-cross-role-messages": "node scripts/create-cross-role-messages.js",
     "deploy:vercel": "vercel --prod",
     "deploy:netlify": "netlify deploy --prod --dir=.next",
-    "build:cloudflare": "cp next.config.cloudflare.js next.config.js && npm run build",
-    "deploy:cloudflare": "npm run build:cloudflare && wrangler pages deploy .next --project-name=meilv-web"
+    "build:cloudflare": "cp next.config.cloudflare.js next.config.js && npm run build && rm -rf out/cache",
+    "deploy:cloudflare": "npm run build:cloudflare && wrangler pages deploy out --project-name=meilv-web"
   },
   "dependencies": {
     "@heroicons/react": "^2.2.0",

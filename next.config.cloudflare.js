@@ -18,7 +18,10 @@ const nextConfig = {
     serverComponentsExternalPackages: ['pg']
   },
   // Cloudflare Pages 特定配置
-  output: 'standalone',
+  output: 'export',
+  trailingSlash: true,
+  skipTrailingSlashRedirect: true,
+  distDir: 'out',
   // 禁用图片优化（Cloudflare Pages 不支持）
   images: {
     unoptimized: true,

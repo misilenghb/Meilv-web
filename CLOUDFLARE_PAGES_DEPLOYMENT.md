@@ -23,8 +23,8 @@
 Project name: meilv-web
 Production branch: main
 Root directory: meilv-web
-Build command: npm run build
-Build output directory: .next
+Build command: npm run build:cloudflare
+Build output directory: out
 ```
 
 #### 步骤 4: 配置环境变量
@@ -103,8 +103,8 @@ Cloudflare 项目配置文件
 ### Cloudflare Pages 构建设置
 
 ```yaml
-Build command: npm run build
-Build output directory: .next
+Build command: npm run build:cloudflare
+Build output directory: out
 Root directory: meilv-web
 Node.js version: 18
 ```

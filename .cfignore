@@ -1,0 +1,48 @@
+# Cloudflare Pages 忽略文件
+# 排除大文件和不必要的文件以避免 25MB 限制
+
+# Next.js 缓存文件
+.next/cache/
+.next/server/chunks/
+.next/static/chunks/webpack/
+
+# 开发文件
+node_modules/
+.env*
+.git/
+.gitignore
+
+# 构建缓存
+.next/cache/
+.next/trace
+.next/server/pages-manifest.json
+
+# 大文件
+*.pack
+*.map
+*.log
+
+# 测试文件
+coverage/
+test/
+tests/
+__tests__/
+
+# 文档文件
+*.md
+docs/
+documentation/
+
+# 配置文件
+.vscode/
+.idea/
+*.config.js
+!next.config.js
+
+# 脚本文件
+scripts/
+check-*.js
+test-*.js
+fix-*.js
+final-*.js
+*-verification.js
