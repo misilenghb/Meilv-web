@@ -17,7 +17,9 @@
     "deploy:vercel": "vercel --prod",
     "deploy:netlify": "netlify deploy --prod --dir=.next",
     "build:cloudflare": "./build.sh",
-    "deploy:cloudflare": "npm run build:cloudflare && wrangler pages deploy out --project-name=meilv-web"
+    "deploy:cloudflare": "npm run build:cloudflare && wrangler pages deploy out --project-name=meilv-web",
+    "deploy:workers": "npm run build && wrangler deploy",
+    "dev:workers": "wrangler dev"
   },
   "dependencies": {
     "@heroicons/react": "^2.2.0",
