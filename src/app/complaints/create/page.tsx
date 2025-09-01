@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { ExclamationTriangleIcon, DocumentTextIcon } from "@heroicons/react/24/outline";
@@ -39,7 +39,7 @@ const COMPLAINT_CATEGORIES = {
   other: "其他"
 };
 
-export default function CreateComplaintPage() {
+function CreateComplaintForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const orderId = searchParams.get("orderId");
@@ -318,5 +318,26 @@ export default function CreateComplaintPage() {
         </form>
       </div>
     </div>
+  );
+}
+
+function LoadingFallback() {
+  return (
+    <div className="min-h-screen py-8 px-4">
+      <div className="max-w-2xl mx-auto">
+        <div className="text-center py-12">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-pink-600 mx-auto"></div>
+          <p className="mt-4 text-gray-600">加载中...</p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default function CreateComplaintPage() {
+  return (
+    <Suspense fallback={<LoadingFallback />}>
+      <CreateComplaintForm />
+    </Suspense>
   );
 }
